@@ -15,35 +15,8 @@ def main():
     # prints test database
     return jsonify({'db':getDB()})
 
-# test json-based test database
-def getDB():
-    with open('genebase.json', 'r') as db:
-        genebase = json.load(db)
-
-    for gene in genebase:
-        print(gene['dataset'])
-
-    return genebase
-
-# return all item in test database
-@app.route('/item/genes',methods=['GET'])
-def getItems():
-    items=getDB()
-    return jsonify({'items':items})
-
-# return a list of hardcoded test IDs (degugging)
-def getIDs():
-    return ["101","201","301"]
-
-# get random suggests from test database 
-@app.route('/item/get_random_suggest',methods=['GET','POST'])
-def getRandomSuggest():
-    ID = random.choice(getIDs())
-    gene = [ i for i in getDB() if (i['id'] == ID) ]
-    return jsonify({'i':gene})
-
 # get data from real online database
-def getDB2(query, species, limit):
+def getDB(query, species, limit):
     try:
         connection = mysql.connector.connect(host='ensembldb.ensembl.org',
                                             database='ensembl_website_97',
@@ -85,7 +58,6 @@ def cmdBuilder(query, species, limit):
     if(str(limit) != ""):
         cmd += " limit " + str(limit) + ";"
     return cmd
-    
 
 # get suggests based on service params
 @app.route('/item/get_suggest',methods=['GET','POST'])
@@ -102,7 +74,7 @@ def getSuggest():
     if 'limit' in request.args:
         limit = request.args['limit']
         print("limit",limit)
-    return getDB2(query, species, limit)
+    return getDB(query, species, limit)
 
 if __name__ == "__main__":
     app.run()
