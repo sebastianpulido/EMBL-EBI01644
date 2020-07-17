@@ -4,7 +4,6 @@ from flask import jsonify
 from flask import request
 from flask import render_template
 import json
-import random
 import mysql.connector
 from mysql.connector import Error
 
@@ -19,7 +18,7 @@ def main():
 def getDB(query, species, limit):
     try:
         connection = mysql.connector.connect(host='ensembldb.ensembl.org',
-                                            database='ensembl_website_97',
+                                            database='ensembl_website_98',
                                             user='anonymous',
                                             port=3306)
 
@@ -28,6 +27,9 @@ def getDB(query, species, limit):
             print("Connected to MySQL Server version ", db_Info)
             cursor = connection.cursor()
             cmd = cmdBuilder(query, species, limit)
+
+            cmd = 'SELECT * FROM genome_db WHERE name IN ("Homo_sapiens", "Gallus_gallus");'
+
             cursor.execute(cmd)
             result = cursor.fetchall()
 
@@ -48,9 +50,10 @@ def getDB(query, species, limit):
             connection.close()
             print("MySQL connection is closed")
 
+# builds the sql query to query ensembl database
 def cmdBuilder(query, species, limit):
     # 13,499,312 species
-    cmd = " select distinct species, display_label from ensembl_website_97.gene_autocomplete where 1=1"
+    cmd = " select distinct species, display_label from ensembl_website_98.gene_autocomplete where 1=1"
     if(str(species) != ""):
         cmd += " and species like '%" + str(species) + "%'"
     if(str(query) != ""):
@@ -58,6 +61,12 @@ def cmdBuilder(query, species, limit):
     if(str(limit) != ""):
         cmd += " limit " + str(limit) + ";"
     return cmd
+
+def cmdBuilder_hg37():
+    print("query for hg37")
+
+def cmdBuilder_hg38():
+    print("query for hg38")
 
 # get suggests based on service params
 @app.route('/item/get_suggest',methods=['GET','POST'])
