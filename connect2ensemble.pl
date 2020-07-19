@@ -5,23 +5,14 @@ use Bio::EnsEMBL::Registry;
 use Data::Dumper;
 use Getopt::Long;
 
-# Default option values
-my $help       = 0;
-my $host       = 'ensembldb.ensembl.org';
-my $user       = 'anonymous';
-my $port       = 3306;
-my $verbose    = 0;
-my $db_version = -1;
-my $grch37;
-
-# Connecting to the database for GRCh37
+# Connecting to the database for GRCh38
 my $registry = 'Bio::EnsEMBL::Registry';
 $registry -> load_registry_from_db(
     -host => 'ensembldb.ensembl.org',
     -user => 'anonymous'
 );
 
-# Define the query species and the coordinates of the Slice
+# Define the query species and the coordinates of the Slice (default values)
 my $query_species    = 'human';
 my $seq_region       = '10';
 my $seq_region_start = 25000; 
@@ -51,13 +42,14 @@ my $strand = $slice -> strand;
 
 my @coords = $mapper->map( $frm_seq_region, $start, $end, $strand, $cs8 );
 
+# Output: From GRCh38 to GRCh37
 print "\nGRCh38\n";
 warn Dumper($slice -> coord_system);
 print "\n";
 
 print "\nGRCh37\n";
 foreach my $c (@coords){
-    warn Dumper($c -> coord_system);
+    warn Dumper($c);
 }
 print "\n";
 
