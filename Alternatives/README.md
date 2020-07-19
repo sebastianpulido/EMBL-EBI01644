@@ -62,7 +62,7 @@ output:
 	
 Description:
 	
-		This web server implemente in Python & Flask
+		Web server / application implemented in Python & Flask
 		connects directly to Ensembl database,
 		build and SQL command and returns the resultset.
 
@@ -94,9 +94,11 @@ e.g. cmdapp_cli.py (converts default values from GRCh38 to GRCh37 only)
 		It uses Click in order to received arguments from the command line.
 		
 Advantages:
+		
 		- It is convenient because it is a popular programming / scripting language.
 		
 Disadvantages:
+		
 		- It does not have any logic regarding the coversion, therefore,
 		in order to extend the functionality of the script, requieres some effort.
 
