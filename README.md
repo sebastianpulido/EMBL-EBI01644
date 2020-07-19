@@ -1,6 +1,6 @@
 # EMBL-EBI01644
 
-The script uses Ensembl PERL API (Core).
+The script uses Ensembl PERL API to convert between GRCh38 to GRCh37.
 
     Adaptors used:
     
