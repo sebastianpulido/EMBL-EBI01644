@@ -1,7 +1,14 @@
 # EMBL-EBI01644
 
-    Sebastian Pulido Mojica
-    sebastian-mojica@outlook.com
+The script uses Ensembl PERL API (Core).
+Adaptors used:
+    
+    slice
+    coordsystem
+    assemblymapper
+  
+    The adaptors are used in order to obtain the corresponding objects that allows to get a slice, 
+    fetch coordinate system by name and a mapper to translate between GRCh38 and GRCh37
 
 Dependecies
     
