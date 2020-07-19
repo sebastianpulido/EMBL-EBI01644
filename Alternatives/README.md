@@ -1,6 +1,6 @@
 # EMBL-EBI01644
 Alternatives:
-- 1. Use Enseml REST API
+# - 1. Use Enseml REST API
 		
 	e.g. http://rest.ensembl.org/map/human/GRCh38/1:942451..942451:1/GRCh37?
 	
@@ -34,7 +34,7 @@ Alternatives:
 		- There might be some extra latency.
 
 
-- 2. Web Server listening for requests to convert from GRCh38 to GRCh37
+# - 2. Web Server listening for requests to convert from GRCh38 to GRCh37
 
 	e.g. webserver.py
 	
@@ -71,7 +71,7 @@ Alternatives:
 		Disadvantages:
 		- Knowledge of the database tables, schemas, etc is necessary.
 		
-- 3. A client or wrapper script written in Python
+# - 3. A client or wrapper script written in Python
 		
 	e.g. cmdapp_cli.py (converts default values from GRCh38 to GRCh37 only)
 	
