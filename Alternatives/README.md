@@ -28,7 +28,7 @@ Alternatives:
 		import mysql.connector
 		from mysql.connector import Error
 
-
+		Usage: http://localhost:5000/item/get_suggest?query=a&species=a&limit=10
 
 		This web server implemente in Python & Flask
 		connects directly to Ensembl database,
@@ -46,7 +46,7 @@ Alternatives:
 		
 - 3. A client or wrapper script written in Python
 		
-	e.g. cmdapp_cli.py
+	e.g. cmdapp_cli.py (converts default values from GRCh38 to GRCh37)
 	
 		Dependecies / Libraries
 		
