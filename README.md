@@ -2,6 +2,7 @@
 
 Dependecies
  - Ensembl PERL API
+ - #!/usr/bin/env perl
 
 How to run:
 Usage: connect2ensemble.pl [OPTIONS]
@@ -19,7 +20,7 @@ example:
     ./connect2ensemble.pl
 
 Output:
-GRCh38 coordinates
+GRCh38 coordinate system
 $VAR1 = bless( {
                  'adaptor' => 'Bio::EnsEMBL::DBSQL::CoordSystemAdaptor=HASH(0x7fffea738168)',
                  'sequence_level' => 0,
@@ -32,7 +33,7 @@ $VAR1 = bless( {
                }, 'Bio::EnsEMBL::CoordSystem' );
 
 
-GRCh37 coordinates
+GRCh37 coordinate system
 $VAR1 = bless( {
                  'start' => 75000,
                  'name' => 'HG905_PATCH',
