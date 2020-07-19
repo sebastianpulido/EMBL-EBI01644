@@ -1,5 +1,8 @@
 # EMBL-EBI01644
 
+    Sebastian Pulido Mojica
+    sebastian-mojica@outlook.com
+
 Dependecies
     
     Ensembl PERL API
