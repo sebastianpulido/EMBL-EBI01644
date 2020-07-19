@@ -1,6 +1,6 @@
 # EMBL-EBI01644
 Alternatives:
-# - 1. Use Enseml REST API
+# - 1. Use Ensembl REST API
 		
 	e.g. http://rest.ensembl.org/map/human/GRCh38/1:942451..942451:1/GRCh37?
 	
