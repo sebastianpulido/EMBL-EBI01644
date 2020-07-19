@@ -1,8 +1,9 @@
 # EMBL-EBI01644
 
 Dependecies
- - Ensembl PERL API
- - #!/usr/bin/env perl
+    
+    Ensembl PERL API
+    #!/usr/bin/env perl
 
 How to run:
 
@@ -10,14 +11,10 @@ How to run:
 
 Options:
   
-  - chromosome            Chromosome, default = 10
-  
-  - seq_region_start      Sequence region start, default = 25000
-  
-  - seq_region_end        Sequence region end, default = 30000
-  
-  - help                  Print this message
-
+    chromosome            Chromosome, default = 10
+    seq_region_start      Sequence region start, default = 25000
+    seq_region_end        Sequence region end, default = 30000
+    help                  Print this message
 
 If no arguments are passed in, default values will be used.
 
