@@ -3,13 +3,34 @@ Alternatives:
 - 1. Use Enseml REST API
 		
 	e.g. http://rest.ensembl.org/map/human/GRCh38/1:942451..942451:1/GRCh37?
+	
+	output: 
+	
+		mappings: 
+		  - 
+		    mapped: 
+		      assembly: GRCh37
+		      coord_system: chromosome
+		      end: 877831
+		      seq_region_name: 1
+		      start: 877831
+		      strand: 1
+		    original: 
+		      assembly: GRCh38
+		      coord_system: chromosome
+		      end: 942451
+		      seq_region_name: 1
+		      start: 942451
+		      strand: 1
 		
-		Advantages:
+	Advantages:
+	
 		- Can be called from any web browser.
 		- It can be access within a script in a programmatically way (using our favourite scripting language).
 		- Provides flexibility and lower maintenance costs.
 		
-		Disadvantages:
+	Disadvantages:
+	
 		- There might be some extra latency.
 
 
@@ -29,6 +50,10 @@ Alternatives:
 		import json
 		import mysql.connector
 		from mysql.connector import Error
+		
+	output:
+	
+		['5S_rRNA', '5_8S_rRNA', 'a1cf', 'A3GALT2', 'aaas', 'aacs', 'aadac', 'aadacl4', 'aadat', 'aagab']
 	
 	Description:
 	
