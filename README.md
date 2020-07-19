@@ -13,7 +13,7 @@ Options:
   -help                  Print this message
 
 
-If not arguments are passed in, default values will be used.
+If no arguments are passed in, default values will be used.
 example:
     ./connect2ensemble.pl --chromosome 10 --seq_region_start 20000 --seq_region_end 35000
     ./connect2ensemble.pl
