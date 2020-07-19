@@ -1,7 +1,8 @@
 # EMBL-EBI01644
 
 The script uses Ensembl PERL API (Core).
-Adaptors used:
+
+    Adaptors used:
     
     slice
     coordsystem
