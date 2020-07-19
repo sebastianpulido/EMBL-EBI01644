@@ -28,8 +28,6 @@ def getDB(query, species, limit):
             cursor = connection.cursor()
             cmd = cmdBuilder(query, species, limit)
 
-            cmd = 'SELECT * FROM genome_db WHERE name IN ("Homo_sapiens", "Gallus_gallus");'
-
             cursor.execute(cmd)
             result = cursor.fetchall()
 
@@ -61,12 +59,6 @@ def cmdBuilder(query, species, limit):
     if(str(limit) != ""):
         cmd += " limit " + str(limit) + ";"
     return cmd
-
-def cmdBuilder_hg37():
-    print("query for hg37")
-
-def cmdBuilder_hg38():
-    print("query for hg38")
 
 # get suggests based on service params
 @app.route('/item/get_suggest',methods=['GET','POST'])
