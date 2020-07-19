@@ -76,7 +76,7 @@ sub usage {
     print "  -seq_region_start      Sequence region start, default = 25000\n";
     print "  -seq_region_end        Sequence region end, default = 30000\n";
     print "  -help                  Print this message\n";
-    print "\n\nIf not arguments are passed in, default values will be used.\n";
+    print "\n\nIf no arguments are passed in, default values will be used.\n";
     print "example:\n";
     print "    ./connect2ensemble.pl --chromosome 10 --seq_region_start 20000 --seq_region_end 35000\n";
     print "    ./connect2ensemble.pl\n";
