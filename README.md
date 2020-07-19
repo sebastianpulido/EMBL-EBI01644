@@ -11,7 +11,7 @@ The script uses Ensembl PERL API to convert between GRCh38 to GRCh37.
     The adaptors are used in order to obtain the corresponding objects that allows to get a slice, 
     fetch coordinate system by name and a mapper to translate between GRCh38 and GRCh37
 
-Dependecies
+Dependecies / Libraries
     
     Ensembl PERL API
     #!/usr/bin/env perl
