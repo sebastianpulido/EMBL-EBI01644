@@ -1,6 +1,15 @@
 # EMBL-EBI01644
 Alternatives:
 - 1. Use Enseml REST API
+		e.g. http://rest.ensembl.org/map/human/GRCh38/1:942451..942451:1/GRCh37?
+		
+		Advantages:
+		- Can be called from any web browser.
+		- It can be access within a script in a programmatically way (using our favourite scripting language).
+		- Provides flexibility and lower maintenance costs.
+		
+		Disadvantages:
+		- There might be some extra latency.
 
 
 - 2. Web Server listening for requests to convert from GRCh38 to GRCh37

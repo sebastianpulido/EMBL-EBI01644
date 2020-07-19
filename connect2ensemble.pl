@@ -15,11 +15,16 @@ my $help             = 0;
 # Parse command-line arguments
 my $options_ok = 
   GetOptions(
-    "chromosome"        => \$chromosome,
-    "seq_region_start"  => \$seq_region_start,
-    "seq_region_end"    => \$seq_region_end,
-    "help"              => \$help);
+    'chromosome=s'        => \$chromosome,
+    'seq_region_start=s'  => \$seq_region_start,
+    'seq_region_end=s'    => \$seq_region_end,
+    'help'              => \$help);
 ($help or !$options_ok) && usage();
+
+# print arguments:
+print "chromosome= " . $chromosome . "\n";
+print "start= " . $seq_region_start . "\n";
+print "end= " . $seq_region_end . "\n\n";
 
 # Connecting to the database for GRCh38
 my $registry = 'Bio::EnsEMBL::Registry';
@@ -52,11 +57,11 @@ my $strand         = $slice -> strand;
 my @coords = $mapper->map( $frm_seq_region, $start, $end, $strand, $cs8 );
 
 # Output: Coordinates converted from GRCh38 to GRCh37
-print "\nGRCh38 coordinates\n";
+print "\nGRCh38 coordinate system\n";
 warn Dumper($slice -> coord_system);
 print "\n";
 
-print "\nGRCh37 coordinates\n";
+print "\nGRCh37 coordinate system\n";
 foreach my $c (@coords){
     warn Dumper($c);
 }
