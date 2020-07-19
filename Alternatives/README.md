@@ -38,7 +38,12 @@ Disadvantages:
 
 e.g. webserver.py
 	
-	Usage: http://localhost:5000/item/get_suggest?query=a&species=a&limit=10
+	Usage: 
+	run web server / application:
+	python3 webserver.py
+	
+	Open web brower and type:
+	http://localhost:5000/item/get_suggest?query=a&species=a&limit=10
 
 		Dependecies / Libraries
 
