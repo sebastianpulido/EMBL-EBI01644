@@ -4,7 +4,7 @@ Alternatives:
 		
 	e.g. http://rest.ensembl.org/map/human/GRCh38/1:942451..942451:1/GRCh37?
 	
-	output: 
+output: 
 	
 		mappings: 
 		  - 
@@ -23,20 +23,20 @@ Alternatives:
 		      start: 942451
 		      strand: 1
 		
-	Advantages:
+Advantages:
 	
 		- Can be called from any web browser.
 		- It can be access within a script in a programmatically way (using our favourite scripting language).
 		- Provides flexibility and lower maintenance costs.
 		
-	Disadvantages:
+Disadvantages:
 	
 		- There might be some extra latency.
 
 
 # - 2. Web Server listening for requests to convert from GRCh38 to GRCh37
 
-	e.g. webserver.py
+e.g. webserver.py
 	
 	Usage: http://localhost:5000/item/get_suggest?query=a&species=a&limit=10
 
@@ -51,11 +51,11 @@ Alternatives:
 		import mysql.connector
 		from mysql.connector import Error
 		
-	output:
+output:
 	
 		['5S_rRNA', '5_8S_rRNA', 'a1cf', 'A3GALT2', 'aaas', 'aacs', 'aadac', 'aadacl4', 'aadat', 'aagab']
 	
-	Description:
+Description:
 	
 		This web server implemente in Python & Flask
 		connects directly to Ensembl database,
@@ -73,7 +73,7 @@ Alternatives:
 		
 # - 3. A client or wrapper script written in Python
 		
-	e.g. cmdapp_cli.py (converts default values from GRCh38 to GRCh37 only)
+e.g. cmdapp_cli.py (converts default values from GRCh38 to GRCh37 only)
 	
 	Usage: python3 cmdapp_cli.py -c 10 -f 25000 -t 30000
 
@@ -88,10 +88,10 @@ Alternatives:
 		converts coordinates from GRCh38 to GRCh37.
 		It uses Click in order to received arguments from the command line.
 		
-		Advantages:
+Advantages:
 		- It is convenient because it is a popular programming / scripting language.
 		
-		Disadvantages:
+Disadvantages:
 		- It does not have any logic regarding the coversion, therefore,
 		in order to extend the functionality of the script, requieres some effort.
 
