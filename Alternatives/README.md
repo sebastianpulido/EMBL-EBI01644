@@ -16,6 +16,8 @@ Alternatives:
 - 2. Web Server listening for requests to convert from GRCh38 to GRCh37
 
 	e.g. webserver.py
+	
+	Usage: http://localhost:5000/item/get_suggest?query=a&species=a&limit=10
 
 		Dependecies / Libraries
 
@@ -27,9 +29,9 @@ Alternatives:
 		import json
 		import mysql.connector
 		from mysql.connector import Error
-
-		Usage: http://localhost:5000/item/get_suggest?query=a&species=a&limit=10
-
+	
+	Description:
+	
 		This web server implemente in Python & Flask
 		connects directly to Ensembl database,
 		build and SQL command and returns the resultset.
@@ -46,8 +48,10 @@ Alternatives:
 		
 - 3. A client or wrapper script written in Python
 		
-	e.g. cmdapp_cli.py (converts default values from GRCh38 to GRCh37)
+	e.g. cmdapp_cli.py (converts default values from GRCh38 to GRCh37 only)
 	
+	Usage: python3 cmdapp_cli.py -c 10 -f 25000 -t 30000
+
 		Dependecies / Libraries
 		
 		#!/usr/bin/python3
