@@ -2,54 +2,98 @@
 use strict;
 use warnings;
 use Bio::EnsEMBL::Registry;
+use Data::Dumper;
+use Getopt::Long;
 
+# Default option values
+my $help       = 0;
+my $host       = 'ensembldb.ensembl.org';
+my $user       = 'anonymous';
+my $port       = 3306;
+my $verbose    = 0;
+my $db_version = -1;
+my $grch37;
+
+# Connecting to the database for GRCh37
 my $registry = 'Bio::EnsEMBL::Registry';
 $registry -> load_registry_from_db(
     -host => 'ensembldb.ensembl.org',
     -user => 'anonymous'
 );
 
-=for comment
-my $registry_37 = 'Bio::EnsEMBL::Registry';
-$registry_37 -> load_registry_from_db(
-    -host => 'ensembldb.ensembl.org',
-    -user => 'anonymous',
-    -port => 3337
-);
-=cut
-
 # Define the query species and the coordinates of the Slice
-my $query_species = 'human';
-my $seq_region = '10';
-my $seq_region_start = 25000;
-my $seq_region_end   = 30000;
+my $query_species    = 'human';
+my $seq_region       = '10';
+my $seq_region_start = 25000; 
+my $seq_region_end   = 30000; 
 
-=for comment
-my @db_adaptors = @{ $registry -> get_all_DBAdaptors() };
-foreach my $db_adaptor (@db_adaptors) {
-    my $db_connection = $db_adaptor -> dbc();
+# Set the Dumper settings to show only one level and use indents on the hash
+$Data::Dumper::Maxdepth = 1;
+$Data::Dumper::Indent   = 3;
 
-    printf(
-        "species/group\t%s/%s\ndatabase\t%s\nhost:port\t%s:%s\n\n",
-        $db_adaptor->species(),   
-        $db_adaptor->group(),
-        $db_connection->dbname(), 
-        $db_connection->host(),
-        $db_connection->port()
-    );
+# Adaptors
+my $slice_a = $registry -> get_adaptor("human", "core", "slice");
+my $csa     = $registry -> get_adaptor("human", "core", "coordsystem");
+my $asma    = $registry -> get_adaptor( "human", "core", "assemblymapper" );
+
+# Objects
+my $slice  = $slice_a -> fetch_by_region('chromosome', '10', 25000, 30000);
+my $cs7    = $csa -> fetch_by_name('chromosome', 'GRCh37');
+my $cs8    = $csa -> fetch_by_name('chromosome', 'GRCh38');
+my $mapper = $asma->fetch_by_CoordSystems( $cs7, $cs8 );
+
+debugging();
+
+my $frm_seq_region = $slice -> seq_region_name;
+my $start  = $slice -> start;
+my $end    = $slice -> end;
+my $strand = $slice -> strand;
+
+my @coords = $mapper->map( $frm_seq_region, $start, $end, $strand, $cs8 );
+
+print "\nGRCh38\n";
+warn Dumper($slice -> coord_system);
+print "\n";
+
+print "\nGRCh37\n";
+foreach my $c (@coords){
+    warn Dumper($c -> coord_system);
 }
-=cut
+print "\n";
 
-my $gene_adaptor = $registry -> get_adaptor("human", "core", "gene");
-my $gene = $gene_adaptor -> fetch_by_dbID(10);
-printf("geneByID", $gene);
+# subs
+sub usage {
+    my $prog = `basename $0`; chomp($prog);
+    print "Usage: $prog [OPTIONS]\n\n";
+    print "Options:\n";
+    print "  -chromosome            Chromosome, default = 1\n";
+    print "  -seq_region_start      Sequence region start\n";
+    print "  -seq_region_end        Sequence region end\n";
+    print "  -help                  Print this message\n";
+    print "\n\n";
+    exit 1;
+}
 
-my $slice_adaptor = $registry -> get_adaptor("human", "core", "slice");
-my $slice = $slice_adaptor -> fetch_by_region('chromosome', '1', 1, 1000000);
+sub debugging {
+    print "\nCOORDINATE SYSTEM 37\n";
+    warn Dumper($cs7);
+    print "\n";
 
-my @genes = @{ $gene_adaptor -> fetch_all_by_Slice($slice) };
-foreach my $g (@genes) {
-    printf(
-        $g,"\n"
-    );
+    print "\nCOORDINATE SYSTEM 38\n";
+    warn Dumper($cs8);
+    print "\n";
+
+    print "\nMAPPER\n";
+    warn Dumper($mapper);
+    print "\n";
+
+    print "\nDUMP SLICE\n";
+    warn Dumper($slice);
+    print "\n";
+
+    print "\nCOORD SYSTEM\n";
+    my $coordsys8 = $slice->coord_system;
+    print $coordsys8 . "\n";
+    print $coordsys8 -> version;
+    print "\n";
 }
